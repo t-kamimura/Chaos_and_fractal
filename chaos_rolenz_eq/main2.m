@@ -31,8 +31,8 @@ zmin = 0; zmax = 50;
 fig = figure('position', [0, 0, 800, 600], 'color', [1/255, 1/255, 1/255]);
 set(fig, 'DoubleBuffer', 'on');
 
-n = 5 * 1e5; % 計算するデータ数
-m = 1e4; % 実際に描画する点
+n = 5 * 1e3; % 計算するデータ数
+m = 1e3; % 実際に描画する点
 q = zeros(n, 3);
 % clr = bone(m);
 clr = hsv(360).*0.8 + ones(360,3).*0.2;
@@ -68,7 +68,7 @@ x = q(n / 100, 1);
 y = q(n / 100, 2);
 z = q(n / 100, 3);
 
-% 2回目以降の描画は、点の座標を変えるだけ
+% 2回目以降�?描画は、点の座標を変えるだ�?
 for j = 1:3 * 360
 
     for i = 1:n
@@ -110,8 +110,9 @@ for j = 1:3 * 360
 end
 
 if saveflag == true
-    videoobj = VideoWriter([date, 'movie.avi'], 'Motion JPEG AVI');
-    videoobj.Quality = 95;
+    videoobj = VideoWriter([date,'movie.mp4'],'MPEG-4');
+%     videoobj = VideoWriter([date, 'movie.avi'], 'Motion JPEG AVI');
+%     videoobj.Quality = 95;
     fprintf('video generating...')
     open(videoobj);
     writeVideo(videoobj, F);

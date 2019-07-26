@@ -2,6 +2,19 @@ clear
 close all
 
 %% settings
+
+% Construct a questdlg with three options
+choice = questdlg('Do you want to save the result(s)?', ...
+    'Saving opptions', ...
+    'Yes', 'No', 'No');
+% Handle response
+switch choice
+    case 'Yes'
+        saveflag = true;
+    case 'No'
+        saveflag = false;
+end
+
 l0 = 10;
 x(1) = 10;
 y(1) = x(1)*sqrt(3)*0.5;
@@ -26,12 +39,16 @@ line([-0.5*l0 0.5*l0],[0 0],'color','w','linewidth',mylinewidth)
 %% それ以降
 origin = [0,0];
 origins(1,:) = origin;
+F=[];
 for i = 1:7
     l0 = l0*0.5;
     for j = 1:3^(i-1)
         origin = origins(j,:);
         drowTriangle(origin,l0);
         drawnow
+        if saveflag == true
+            F = [F; getframe(gcf)];
+        end
 %         pause(0.1)
     end
     % 次のループで使用する原点を生成
@@ -50,6 +67,17 @@ for i = 1:7
     clearvars origins
     origins = origin_;
 end
+if saveflag == true
+    videoobj = VideoWriter([date,'movie.mp4'],'MPEG-4');
+%     videoobj = VideoWriter([date, 'movie.avi'], 'Motion JPEG AVI');
+%     videoobj.Quality = 95;
+    fprintf('video saving...')
+    open(videoobj);
+    writeVideo(videoobj, F);
+    close(videoobj);
+    fprintf('complete!\n');
+end
+
 %%
 function drowTriangle(origin,l)
     global mylinewidth

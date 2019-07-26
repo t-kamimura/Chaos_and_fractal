@@ -1,6 +1,6 @@
 % fileName: main_ode_test.m
 % initDate: 20190723
-% Object:   3重振子の運動方程式を解く。3つの振子を同時に動かす。
+% Object:   3重振子�?運動方程式を解く�?3つの振子を同時に動かす�?
 
 clear; close all;
 
@@ -29,22 +29,22 @@ refine = 6;
 % equation of motion
 ode = @(t, y) eom_pendulum(t, y, param);
 % options for ode45 function
-options = odeset('RelTol', relval, 'AbsTol', absval, 'Refine', refine, 'Stats', 'off'); %ode45のオプションを設定．
+options = odeset('RelTol', relval, 'AbsTol', absval, 'Refine', refine, 'Stats', 'off'); %ode45のオプションを設定�?
 
-%% 数値積分
-% ode45で微分方程式を解く
+%% 数値積�?
+% ode45で微�?��程式を解�?
 % [tout1,yout] = ode45(ode,[tstart tend], y_ini,options);
-% 4次のルンゲクッタで微分方程式を解く
+% 4次のルンゲク�?��で微�?��程式を解�?
 [tout1, yout1] = rungekutta4(ode, dt, [tstart tend], y_ini);
 
-% 初期値をちょっとだけずらす
+% 初期値をち�?��と�?��ずら�?
 
-% 4次のルンゲクッタで微分方程式を解く
+% 4次のルンゲク�?��で微�?��程式を解�?
 [tout2, yout2] = rungekutta4(ode, dt, [tstart tend], y_ini2);
 
-% 初期値をちょっとだけずらす
+% 初期値をち�?��と�?��ずら�?
 
-% 4次のルンゲクッタで微分方程式を解く
+% 4次のルンゲク�?��で微�?��程式を解�?
 [tout3, yout3] = rungekutta4(ode, dt, [tstart tend], y_ini3);
 
 save('ODE_RESULTS', 'param', 'tout1', 'yout1', 'yout2', 'yout3')
@@ -215,9 +215,9 @@ for i = 1:10:length(tout1)
 end
 
 if saveflag == true
-    %videoobj = VideoWriter([date,'movie.avi'],'Uncompressed AVI');
-    videoobj = VideoWriter([date, 'movie.avi'], 'Motion JPEG AVI');
-    videoobj.Quality = 95;
+    videoobj = VideoWriter([date,'movie.mp4'],'MPEG-4');
+%     videoobj = VideoWriter([date, 'movie.avi'], 'Motion JPEG AVI');
+%     videoobj.Quality = 95;
     fprintf('video saving...')
     open(videoobj);
     writeVideo(videoobj, F);
