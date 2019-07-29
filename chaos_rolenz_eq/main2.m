@@ -31,8 +31,8 @@ zmin = 0; zmax = 50;
 fig = figure('position', [0, 0, 800, 600], 'color', [1/255, 1/255, 1/255]);
 set(fig, 'DoubleBuffer', 'on');
 
-n = 5 * 1e3; % 計算するデータ数
-m = 1e3; % 実際に描画する点
+n = 5 * 1e5; % 計算するデータ数
+m = 1e4; % 実際に描画する点
 q = zeros(n, 3);
 % clr = bone(m);
 clr = hsv(360).*0.8 + ones(360,3).*0.2;
@@ -117,5 +117,5 @@ if saveflag == true
     open(videoobj);
     writeVideo(videoobj, F);
     close(videoobj);
-    fprinf('complete!\n')
+    fprintf('complete!\n')
 end
