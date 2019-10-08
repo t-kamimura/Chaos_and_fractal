@@ -45,7 +45,7 @@ line([-0.5*l0 0.5*l0],[-l0*sin(pi/3) -l0*sin(pi/3)],'color',mylinecolor,'linewid
 origin = [0,-l0*sin(pi/3)];
 origins(1,:) = origin;
 F=[];
-n=7;
+n=6;
 for i = 1:n
     l0 = l0*0.5;
     for j = 1:3^(i-1)
@@ -69,11 +69,11 @@ for i = 1:n
     origins = origin_;
 end
 %%
-step = 100;
+step = 200;
 for i = 1:step
-    scale = 1+i/step;
-    xmax = xmax0/scale;
-    ytop = ytop0/scale;
+    scale = 1-0.5*(i/step);
+    xmax = xmax0*scale;
+    ytop = ytop0*scale;
     xlim([-xmax xmax])
     ylim([ytop-2*xmax ytop])
     drawnow
