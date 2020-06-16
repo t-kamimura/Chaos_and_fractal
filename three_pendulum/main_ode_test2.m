@@ -33,7 +33,7 @@ y_ini(8,:) = y_ini_orig + [0 0 0 0 -1e-6 1e-6];
 y_ini(9,:) = y_ini_orig + [0 0 0 -1e-6 0 1e-6];
 y_ini(10,:) = y_ini_orig + [0 0 0 -1e-6 1e-6 0];
 tstart = 0;
-tend = 25;
+tend = 30;
 dt = 1e-3;
 num = 10;
 
@@ -67,7 +67,7 @@ end
 
 
 %% visualize
-num = 1;
+num = 10;
 % Construct a questdlg with three options
 choice = questdlg('Do you want to save the result(s)?', ...
     'Saving opptions', ...
@@ -108,7 +108,7 @@ for i=1:num
 end
 
 strng = [num2str(0, '%.2f'), ' s'];
-t = text(1.2, -3.0, strng, 'color', 'w', 'fontsize', 20);
+t = text(1.2, -2.5, strng, 'color', 'w', 'fontsize', 20);
 axis equal
 xlim([-2 2])
 ylim([-3.5 0.5])
@@ -117,7 +117,7 @@ axis off
 F = [];
 n = 1;
 
-for i_t = 1:20:length(tout)
+for i_t = 1:5:length(tout)
     %cla
 
     strng = [num2str(tout(i_t), '%.3f'), ' s'];
